@@ -41,6 +41,47 @@ impl Invokers {
             &[],
         )
     }
+    /// Issue a spl_token `InitializeMint` instruction.
+    pub fn token_initialize_mint<'a>(
+        token_program: AccountInfo<'a>,
+        mint: AccountInfo<'a>,
+        rent_sysvar: AccountInfo<'a>,
+        decimals: u8,
+        mint_authority: Pubkey,
+    ) -> Result<(), ProgramError> {
+        let ix = spl_token::instruction::initialize_mint(
+            &spl_token::id(),
+            &mint.key,
+            &mint_authority,
+            None, // No freeze authority
+            decimals,
+        )?;
+
+        solana_program::program::invoke(&ix, &[mint, rent_sysvar, token_program])
+    }
+    /// Issue a spl_token `Approve` instruction.
+    pub fn token_approve<'a>(
+        token_program: AccountInfo<'a>,
+        source: AccountInfo<'a>,
+        delegate: AccountInfo<'a>,
+        owner: AccountInfo<'a>,
+        amount: u64,
+    ) -> Result<(), ProgramError> {
+        let ix = spl_token::instruction::approve(
+            token_program.key,
+            source.key,
+            delegate.key,
+            owner.key,
+            &[],
+            amount,
+        )?;
+
+        solana_program::program::invoke_signed(
+            &ix,
+            &[source, delegate, owner, token_program],
+            &[],
+        )
+    }
     /// Issue a spl_token `Burn` instruction.
     pub fn token_burn<'a>(
         token_program: AccountInfo<'a>,

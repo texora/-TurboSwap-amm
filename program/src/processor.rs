@@ -40,6 +40,17 @@ use solana_program::{
     sysvar::{clock, Sysvar},
 };
 
+use svm_spl_token::{
+    self as spl_token,
+    state::{Account as TokenAccount, Mint},
+};
+
+use svm_serum_dex::{
+    critbit::{LeafNode, Slab, SlabView},
+    matching::{OrderType, Side},
+    state::{Market, MarketState, OpenOrders},
+};
+
 use super::log::*;
 use arrayref::{array_ref, array_refs};
 use arrform::{arrform, ArrForm};
@@ -50,7 +61,7 @@ use std::{
 };
 
 pub mod srm_token {
-    solana_program::declare_id!("SRMuApVNdxXokk5GT7XD5cUUgXMBCoAz2LHeuAoKWRt");
+    solana_program::declare_id!("2F5TprcNBqj2hXVr9oTssabKdf8Zbsf9xStqWjPm8yLo");
 }
 
 pub mod msrm_token {
@@ -72,7 +83,7 @@ pub mod config_feature {
         solana_program::declare_id!("75KWb5XcqPTgacQyNw9P5QU2HL3xpezEVcgsFCiJgTT");
     }
 }
-#[cfg(feature = "devnet")]
+#[cfg(feature = "testnet")]
 pub mod config_feature {
     pub mod amm_owner {
         solana_program::declare_id!("Adm29NctkKwJGaaiU8CXqdV6WDTwR81JbxV8zoxn745Y");
@@ -87,7 +98,7 @@ pub mod config_feature {
         solana_program::declare_id!("3XMrhbv989VxAMi3DErLV9eJht1pHppW5LbKxe9fkEFR");
     }
 }
-#[cfg(not(any(feature = "localnet", feature = "devnet")))]
+#[cfg(not(any(feature = "localnet", feature = "testnet")))]
 pub mod config_feature {
     pub mod amm_owner {
         solana_program::declare_id!("GThUX1Atko4tqhN2NaiTazWSeFWMuiUvfFnyJyUghFMJ");
@@ -182,6 +193,15 @@ impl Processor {
         let open_orders: RefMut<'a, OpenOrders>;
         open_orders = RefMut::map(data, |data| from_bytes_mut(data));
         Ok(open_orders)
+    }
+
+    #[svm_program]
+    pub fn process_instruction(
+        program_id: &Pubkey,
+        accounts: &[AccountInfo],
+        input: &[u8],
+    ) -> ProgramResult {
+        Processor::process(program_id, accounts, input)
     }
 
     pub fn load_serum_market_order<'a>(

@@ -137,7 +137,6 @@ pub enum AmmInstruction {
     ///   Not supported yet, please use `Initialize2` to new a AMM pool
     #[deprecated(note = "Not supported yet, please use `Initialize2` instead")]
     Initialize(InitializeInstruction),
-
     ///   Initializes a new AMM pool.
     ///
     ///   0. `[]` Spl Token program id
@@ -1121,8 +1120,8 @@ pub fn swap_base_out(
     })
 }
 
-/// Creates a 'migrate_to_openbook' instruction.
-pub fn migrate_to_openbook(
+/// Creates a 'migrate_to_open_book' instruction.
+pub fn migrate_to_open_book(
     amm_program: &Pubkey,
     amm_pool: &Pubkey,
     amm_authority: &Pubkey,
@@ -1183,8 +1182,8 @@ pub fn migrate_to_openbook(
     })
 }
 
-/// Creates a 'withdrawpnl' instruction
-pub fn withdrawpnl(
+/// Creates a 'withdraw_pnl' instruction
+pub fn withdraw_pnl(
     amm_program: &Pubkey,
     amm_pool: &Pubkey,
     amm_config: &Pubkey,
@@ -1374,8 +1373,8 @@ pub fn monitor_step(
     })
 }
 
-/// Creates a 'withdrawsrm' instruction
-pub fn withdrawsrm(
+/// Creates a 'withdraw_srm' instruction
+pub fn withdraw_srm(
     amm_program: &Pubkey,
     amm_pool: &Pubkey,
     amm_authority: &Pubkey,
@@ -1405,8 +1404,8 @@ pub fn withdrawsrm(
     })
 }
 
-/// Create a 'simulate_get_pool_info' instruction
-pub fn simulate_get_pool_info(
+/// Create a 'simulate_info' instruction
+pub fn simulate_info(
     amm_program: &Pubkey,
     amm_pool: &Pubkey,
     amm_authority: &Pubkey,

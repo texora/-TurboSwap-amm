@@ -1,10 +1,10 @@
 # Note: This crate must be built using do.sh
 
 [package]
-name = "turboswap_amm"
+name = "raydium_amm"
 version = "0.3.0"
-description = "TurboSwap AMM"
-authors = ["TurboSwap Maintainers"]
+description = "Raydium AMM"
+authors = ["Raydium Maintainers "]
 repository = "https://github.com/raydium-io/raydium-amm"
 license = "Apache-2.0"
 edition = "2018"
@@ -19,7 +19,7 @@ devnet = []
 localnet = []
 
 [dependencies]
-solana-program = "1.10.35"
+solana-program = "1.18.10"
 spl-token = { version = "4.0.0", features = ["no-entrypoint"] }
 spl-associated-token-account = { version = "2.2.0", features = ["no-entrypoint"]}
 serum_dex = { version = "0.5.10", git = "https://github.com/raydium-io/openbook-dex", features=["no-entrypoint", "program"] }
@@ -29,7 +29,7 @@ bincode = { version = "1.3.3" }
 base64 = "0.13.0"
 arrayref = "0.3.6"
 arrform = { git = "https://github.com/raydium-io/arrform" }
-num-derive = "0.3"
+num-derive = "0.4"
 num-traits = "0.2.12"
 bytemuck = { version = "1.4.0" }
 safe-transmute = "0.11.0"

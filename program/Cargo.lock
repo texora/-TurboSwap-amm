@@ -1210,9 +1210,9 @@ checksum = "bbd2bcb4c963f2ddae06a2efc7e9f3591312473c50c6685e1f298068316e66fe"
 
 [[package]]
 name = "libc"
-version = "0.2.158"
+version = "0.2.159"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d8adc4bb1803a324070e64a98ae98f38934d91957a99cfb3a43dcbc01bc56439"
+checksum = "561d97a539a36e26a9a5fad1ea11a3039a67714694aaa379433e580854bc3dc5"
 
 [[package]]
 name = "libsecp256k1"
@@ -1529,7 +1529,7 @@ version = "3.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8ecf48c7ca261d60b74ab1a7b20da18bede46776b2e55535cb958eb595c5fa7b"
 dependencies = [
- "toml_edit 0.22.21",
+ "toml_edit 0.22.22",
 ]
 
 [[package]]
@@ -1692,6 +1692,29 @@ dependencies = [
 ]
 
 [[package]]
+name = "raydium_amm"
+version = "0.3.0"
+dependencies = [
+ "arrayref",
+ "arrform",
+ "base64 0.13.1",
+ "bincode",
+ "bumpalo",
+ "bytemuck",
+ "num-derive 0.4.2",
+ "num-traits",
+ "safe-transmute",
+ "serde",
+ "serde_json",
+ "serum_dex",
+ "solana-program",
+ "spl-associated-token-account",
+ "spl-token 4.0.3",
+ "thiserror",
+ "uint",
+]
+
+[[package]]
 name = "rayon"
 version = "1.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1713,9 +1736,9 @@ dependencies = [
 
 [[package]]
 name = "redox_syscall"
-version = "0.5.4"
+version = "0.5.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0884ad60e090bf1345b93da0a5de8923c93884cd03f40dfcfddd3b4bee661853"
+checksum = "355ae415ccd3a04315d3f8246e86d67689ea74d88d915576e1589a351062a13b"
 dependencies = [
  "bitflags",
 ]
@@ -2545,36 +2568,13 @@ dependencies = [
 
 [[package]]
 name = "toml_edit"
-version = "0.22.21"
+version = "0.22.22"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3b072cee73c449a636ffd6f32bd8de3a9f7119139aff882f44943ce2986dc5cf"
+checksum = "4ae48d6208a266e853d946088ed816055e556cc6028c5e8e2b84d9fa5dd7c7f5"
 dependencies = [
  "indexmap",
  "toml_datetime",
- "winnow 0.6.18",
-]
-
-[[package]]
-name = "turboswap_amm"
-version = "0.3.0"
-dependencies = [
- "arrayref",
- "arrform",
- "base64 0.13.1",
- "bincode",
- "bumpalo",
- "bytemuck",
- "num-derive 0.3.3",
- "num-traits",
- "safe-transmute",
- "serde",
- "serde_json",
- "serum_dex",
- "solana-program",
- "spl-associated-token-account",
- "spl-token 4.0.3",
- "thiserror",
- "uint",
+ "winnow 0.6.20",
 ]
 
 [[package]]
@@ -2849,9 +2849,9 @@ dependencies = [
 
 [[package]]
 name = "winnow"
-version = "0.6.18"
+version = "0.6.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "68a9bda4691f099d435ad181000724da8e5899daa10713c2d432552b9ccd3a6f"
+checksum = "36c1fec1a2bb5866f07c25f68c26e565c4c200aebb96d7e55710c19d3e8ac49b"
 dependencies = [
  "memchr",
 ]
